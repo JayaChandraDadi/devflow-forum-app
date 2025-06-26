@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from 'typeorm';
+import { Post } from '../posts/posts.entity'; // make sure this path is correct
 
 @Entity()
 export class User {
@@ -11,6 +17,9 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: new Date() })
+  @Column({ default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 }

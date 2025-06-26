@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
-
+import { Post } from './posts/posts.entity'; // adjust path
+import { PostsModule } from './posts/posts.module'; // adjust path
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -18,7 +19,8 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
     }),
     UsersModule,
-    AuthModule, // ✅ this was missing
+    AuthModule,
+    PostsModule 
   ],
 })
 export class AppModule {}
