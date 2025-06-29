@@ -19,4 +19,8 @@ export class PostsService {
   async findAll(): Promise<Post[]> {
     return this.postsRepository.find({ relations: ['user'] });
   }
+  async findOneById(id: number): Promise<Post> {
+  return this.postsRepository.findOne({ where: { id } });
+}
+
 }

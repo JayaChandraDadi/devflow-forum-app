@@ -5,6 +5,9 @@ import { UsersModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
 import { Post } from './posts/posts.entity'; // adjust path
 import { PostsModule } from './posts/posts.module'; // adjust path
+import { CommentsModule } from './comments/comment.module';
+import { LikesModule } from './likes/likes.module';
+import { CommentLikesModule } from './comment-likes/comment-likes.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -20,7 +23,10 @@ import { PostsModule } from './posts/posts.module'; // adjust path
     }),
     UsersModule,
     AuthModule,
-    PostsModule 
+    PostsModule,
+    CommentsModule,
+    LikesModule,
+    CommentLikesModule
   ],
 })
 export class AppModule {}

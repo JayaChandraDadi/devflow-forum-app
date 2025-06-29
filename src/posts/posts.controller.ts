@@ -3,6 +3,8 @@ import { PostsService } from './posts.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { User } from '../users/user.entity';
+import { plainToInstance } from 'class-transformer';
+import { Post } from './posts.entity';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('posts')
@@ -17,6 +19,9 @@ export class PostsController {
 
   @Get()
   async getAllPosts() {
-    return this.postsService.findAll();
+    const posts = await this.postsService.findAll();
+    return plainToInstance(Post, posts, { excludeExtraneousValues: true });
   }
+
+  
 }
